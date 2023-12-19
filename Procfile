@@ -1,1 +1,1 @@
-bot: python reptisell.py
+web: python reptisell.py
