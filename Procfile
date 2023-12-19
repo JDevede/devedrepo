@@ -1,1 +1,1 @@
-web: python reptisell.py
+web: python3 reptisell.py
