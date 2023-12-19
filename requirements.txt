@@ -1,2 +1,3 @@
-gtts
-praw
+logging
+ssl
+aiogram
