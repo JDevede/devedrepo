@@ -1,2 +1,2 @@
-logging
-ssl
+aiogram
+aiohttp
