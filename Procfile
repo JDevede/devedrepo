@@ -1,17 +1,1 @@
-logging
-ssl
-Bot
-filters
-types
-MemoryStorage
-Dispatcher
-FSMContext
-State
-StatesGroup
-get_new_configured_app
-ContentTypes
-InlineKeyboardButton
-InlineKeyboardMarkup
-executor
-CallbackData
-web
+bot: python reptisell.py
