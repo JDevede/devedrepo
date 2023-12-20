@@ -1,23 +1,29 @@
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Define a function to handle the /start command
-def start(update: Update, context: CallbackContext) -> None:
-    user = update.message.from_user
-    update.message.reply_text(f"Hello, {user.first_name}!")
+def start(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm your bot.")
 
-def main() -> None:
-    # Create the Updater and pass in your bot's token
-    updater = Updater("6758061728:AAH52BNG1PnFKfxU3_mGsmM5Ro0j3uQXv0A", use_context=True)
+def main():
+    # Token for the bot
+    TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+
+    # Create an updater object
+    updater = Updater(token=TOKEN, use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    # Register a command handler for the /start command
+    # Register a handler for the /start command
     dp.add_handler(CommandHandler("start", start))
+
+    # Register a handler for messages
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
     # Start the Bot
     updater.start_polling()
+
+    # Run the bot until you press Ctrl-C
     updater.idle()
 
 if __name__ == '__main__':
