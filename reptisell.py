@@ -6,7 +6,7 @@ def start(update, context):
 
 def main():
     # Token for the bot
-    TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+    TOKEN = '6758061728:AAH52BNG1PnFKfxU3_mGsmM5Ro0j3uQXv0A'
 
     # Create an updater object
     updater = Updater(token=TOKEN, use_context=True)
