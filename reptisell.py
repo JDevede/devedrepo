@@ -78,7 +78,7 @@ def gen_kb(data, factory):
 
 CATEGORIES = ["Sauri", "Serpenti", "Testuggini", "Anfibi", "Aracnidi", "Insetti"]
 WC = ["WC", "CB"]
-GENDER = ["Maschio(1.0)", "Femmina (0.1)", "Non Sessato (0.0.1)"] 
+GENDER = ["Maschio(1.0)", "Femmina (0.1)", "Non Sessato (0.0.1)"]
 APPROVAL = ["👎", "👍"]
 category_f = CallbackData("category", "index", sep="_")
 wc_f = CallbackData("wc", "index", sep="_")
@@ -94,7 +94,7 @@ def get_approval_kb(chat_id, file_id, descr):
     for index, text in enumerate(APPROVAL):
         approval_kb.insert(
             InlineKeyboardButton(
-                text, 
+                text,
                 callback_data=approval_f.new(
                     decision = index,
                     chat_id = chat_id,
@@ -127,7 +127,7 @@ async def handle_start(message: types.Message):
 
 @dp.callback_query_handler(category_f.filter(), state=States.category)
 async def process_category(
-    query: types.CallbackQuery, state: FSMContext, callback_data: dict
+        query: types.CallbackQuery, state: FSMContext, callback_data: dict
 ):
     index = int(callback_data["index"])
     category = CATEGORIES[index]
@@ -150,7 +150,7 @@ async def process_species(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(wc_f.filter(), state=States.wc)
 async def process_wc(
-    query: types.CallbackQuery, state: FSMContext, callback_data: dict
+        query: types.CallbackQuery, state: FSMContext, callback_data: dict
 ):
     index = int(callback_data["index"])
     wc = WC[index]
@@ -167,7 +167,7 @@ async def process_wc(
 
 @dp.callback_query_handler(gender_f.filter(), state=States.gender)
 async def process_gender(
-    query: types.CallbackQuery, state: FSMContext, callback_data: dict
+        query: types.CallbackQuery, state: FSMContext, callback_data: dict
 ):
     index = int(callback_data["index"])
     gender = GENDER[index]
@@ -231,8 +231,8 @@ async def process_photo(message: types.Message, state: FSMContext):
             caption=get_message_caption(data, username),
             parse_mode="markdown",
             reply_markup=get_approval_kb(
-                message.chat.id, 
-                n_file - 1, 
+                message.chat.id,
+                n_file - 1,
                 get_message_caption(data, username)
             )
         )
@@ -254,7 +254,7 @@ async def ban(message: types.Message):
         msg = "Utente/i bannato/i!\nUtenti attualmente bannati:\n"
         for b in banned:
             msg += (b + "\n")
-        await bot.send_message(message.chat.id, msg) 
+        await bot.send_message(message.chat.id, msg)
     else:
         await bot.send_message(message.chat.id, "Non hai i permessi per usare questo comando! :c")
 @dp.message_handler(commands = ["list"])
@@ -264,9 +264,9 @@ async def list_ban(message: types.Message):
         msg += (u + "\n")
     msg += f"Totale: {len(banned)}"
     await bot.send_message(
-            message.chat.id,
-            msg
-        )
+        message.chat.id,
+        msg
+    )
 @dp.message_handler(commands = ["unban"])
 async def unban(message: types.Message):
     if message.from_user.id in admins_chat_ids:
